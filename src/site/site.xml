@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Apache Synapse">
+    <skin>
+        <groupId>net.sf.jaasrimap</groupId>
+        <artifactId>jaas-rimap-site-skin</artifactId>
+        <version>1</version>
+    </skin>
+
+    <body>
+        <menu>
+            <item name="About" href="index.html"/>
+        </menu>
+    </body>
+</project>
