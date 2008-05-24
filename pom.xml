@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.sf.jaasrimap</groupId>
+	<artifactId>jaas-rimap</artifactId>
+	<version>0.3-SNAPSHOT</version>
+	<name>JAAS Remote IMAP Login Module</name>
+	<packaging>jar</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.gnu</groupId>
+			<artifactId>inetlib</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+	</dependencies>
+    
+    <repositories>
+        <repository>
+            <id>evolvis</id>
+            <name>Evolvis Repository</name>
+            <url>http://maven-repo.evolvis.org/releases/</url>
+        </repository>
+    </repositories>
+</project>
