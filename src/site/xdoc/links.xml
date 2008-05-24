@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<document>
+    <properties>
+        <title>Links</title>
+    </properties>
+    <body>
+        <section name="JAAS">
+            <p><a href="http://java.sun.com/j2se/1.4.2/docs/guide/security/jaas/JAASRefGuide.html">JAAS reference guide</a></p>
+        </section>
+        <section name="IMAP">
+            <p><a href="http://www.isi.edu/in-notes/rfc3501.txt">RFC 3501</a>: Internet Message Access Protocol&#160;- Version 4rev1</p>
+        </section>
+        <section name="Related projects">
+            <p><a href="http://jaaslounge.sourceforge.net/about.html">JaasLounge</a> provides pure Java login modules for LDAP, NTLM and Active Directory.</p>
+            <p><a href="http://jaas-pam.sourceforge.net/">jaas-pam</a> is a Java bridge to PAM (Pluggable Authentication Modules). It needs a native library and will only work on Unix systems.</p>
+            <p><a href="http://www.bablokb.de/jaas/">ShadowJAAS</a> is a JAAS authentication provider using Unix shadow passwords.</p>
+        </section>
+    </body>
+</document>

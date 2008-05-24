@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<document>
+    <properties>
+        <title>Documentation</title>
+    </properties>
+    <body>
+        <div><img src="link.gif" alt="link" style="vertical-align: middle"/> <a href="javadoc/index.html">Javadoc</a></div>
+        <section name="JAAS Configuration">
+            <p>The full name of the class implementing the login module is <span class="java">net.sf.jaasrimap.RIMAPLoginModule</span>. A typical <span class="filename">jaas.config</span> file will look like this:</p>
+    
+            <div class="codeblock">
+            <div class="indent0">Sample {</div>
+            <div class="indent1">net.sf.jaasrimap.RIMAPLoginModule required host=imap.local.net usetls=true debug=true;</div>
+            <div class="indent0">};</div>
+            </div>
+    
+            <p>The location of the JAAS configuration file must be passed to the JVM in the  <span class="literal">java.security.auth.login.config</span> system property:</p>
+    
+            <p><span class="literal">-Djava.security.auth.login.config=path/to/jaas.config</span></p>
+        </section>
+        <section name="Module options">
+            <p>The login module supports the following options:</p>
+            
+            <table cellspacing="0" cellpadding="0">
+              <tr><th>Option</th><th>Description</th><th>Default value</th></tr>
+              <tr>
+                <td><span class="literal">debug</span></td>
+                <td>If this option is set to <span class="literal">true</span>, debugging is turned on. All debugging messages will be written to <span class="java">System.out</span>.</td>
+                <td><span class="literal">false</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">host</span></td>
+                <td>The hostname of the IMAP server to connect to.</td>
+                <td><span class="literal">localhost</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">protocol</span></td>
+                <td>The protocol to use when talking to the IMAP server. Valid values are <span class="literal">imap</span> for plaintext IMAP or <span class="literal">imaps</span> for IMAP over SSL.</td>
+                <td><span class="literal">imap</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">port</span></td>
+                <td>The port number of the IMAP server to connect to.</td>
+                <td><span class="literal">143</span> (IMAP) or <span class="literal">993</span> (IMAPS)</td>
+              </tr>
+              <tr>
+                <td><span class="literal">connecttimeout</span></td>
+                <td>The timeout value in milliseconds to be used when connecting to the server. A value of <span class="literal">0</span> means the system default.</td>
+                <td><span class="literal">0</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">timeout</span></td>
+                <td>The timeout value in milliseconds to be used when reading replies from the server. A value of <span class="literal">0</span> means the system default.</td>
+                <td><span class="literal">0</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">usetls</span></td>
+                <td>If set to <span class="literal">true</span> the login module will use TLS, i.e. connects to the server in plaintext and then start SSL negociation using the <span class="literal">STARTTLS</span> protocol command. This option is ignored if <span class="literal">protocol</span> is <span class="literal">imaps</span>.</td>
+                <td><span class="literal">false</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">validatecert</span></td>
+                <td>Specify whether the server certificate should be validated. This option is only relevant for IMAP over SSL or together with the <span class="literal">usetls</span> option. Setting this option to <span class="literal">false</span> may be required when the server has a self-signed certificate.</td>
+                <td><span class="literal">true</span></td>
+              </tr>
+              <tr>
+                <td><span class="literal">cachettl</span></td>
+                <td>Specify the caching policy for successful logins. The value is specified as as integer and indicates the number of seconds to cache a successful login. A value of <span class="literal">0</span> disables caching. Note that unsuccesful logins are never cached.</td>
+                <td><span class="literal">0</span></td>
+              </tr>
+            </table>
+        </section>
+        <section name="Subjects and principals">
+            <p>After successful login, the login module will add the following two principals to the subject:</p>
+            
+            <table cellspacing="0" cellpadding="0">
+              <tr><th>Class</th><th>Description</th></tr>
+              <tr>
+                <td><span class="java">net.sf.jaasrimap.RIMAPHost</span></td>
+                <td>The IMAP host that authenticated the user.</td>
+              </tr>
+              <tr>
+                <td><span class="java">net.sf.jaasrimap.RIMAPUser</span></td>
+                <td>The user name.</td>
+              </tr>
+            </table>
+        </section>
+    </body>
+</document>

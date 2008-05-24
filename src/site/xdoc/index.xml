@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<document>
+    <properties>
+        <title>About</title>
+    </properties>
+    <body>
+        <section name="Introduction">
+            <p>The aim of this project is to provide a JAAS (<a href="http://java.sun.com/products/jaas/">Java Authentication and Authorization Service</a>) module allowing authentication against a remote IMAP server. Delegating user authentication to an IMAP server is a common pattern used in PHP development. This project brings this feature to Java.</p>
+            
+            <p>Compared to similar projects (see <a href="links.html">links section</a>) it has the following advantages:</p>
+            
+            <ul>
+            <li>simplicity: use of an existing authentication infrastructure with a lightweight network protocol (compared to LDAP or NTLM/Active Directory);</li>
+            <li>true platform independence (no native code required);</li>
+            <li>no special (root/administrator) rights required;</li>
+            <li>depends only on APIs from the Java Runtime Environment.</li>
+            </ul>
+            
+            <p>It is well suited for prototyping as well as production use.</p>
+        </section>
+        <section name="Features">
+            <ul>
+            <li>Support for TLS and IMAP over SSL based on the <a href="http://java.sun.com/products/jsse/">Java Secure Socket Extension</a> (JSSE). Server certificate validation is configurable. This makes it easier to use servers with self signed certificates.</li>
+            <li>When talking to the IMAP server, jaas-rimap always uses plaintext password authentication (using the <span class="literal">LOGIN</span> command). SASL authentication (using the <span class="literal">AUTHENTICATE</span> command) is not supported.</li>
+            <li>The low level parts of the IMAP protocol are implemented using classes from <a href="http://www.gnu.org/software/classpath/inetlib.html">GNU Classpath::inetlib</a> project. To avoid dependencies these classes are included in the JAR distribution. However they are refactored to have a different Java package name, so that there will be no conflicts when deployed together with the complete inetlib.</li>
+            <li>Successful login attempts can be cached to avoid repetitive connections to the server.</li>
+            </ul>
+        </section>
+        <section name="JRE compatibility">
+            <p>Development currently takes place using Java 1.5. Care has been taken to use only APIs already existing in Java 1.4. However jaas-rimap has not yet been tested with this version.</p>
+        </section>
+        <section name="License">
+            <p>jaas-rimap is distributed under the <a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a> (LGPL). Use of this library in proprietary programs is permitted.</p>
+        </section>
+    </body>
+</document>

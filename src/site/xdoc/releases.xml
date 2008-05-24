@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<document>
+    <properties>
+        <title>Releases</title>
+    </properties>
+    <body>
+        <section name="Version 0.3 (not yet released)">
+            <subsection name="Changes">
+                <ul>
+                <li>Successful logins can now be cached to avoid repetitive connections to the IMAP server (new option <span class="literal">cachettl</span>).</li>
+                <li>IMAP over SSL is now supported (new option <span class="literal">protocol=imaps</span>).</li>
+                <li>The validation policy for the server certificate is now configurable (new option <span class="literal">validatecert</span>).</li>
+                <li>New options for TCP timeouts (<span class="literal">connecttimeout</span> and <span class="literal">timeout</span>).</li>
+                <li>Code improvements.</li>
+                </ul>
+            </subsection>
+        </section>
+        <section name="Version 0.2 (alpha)">
+            <subsection name="Changes">
+                <ul>
+                <li>The server greeting is read (and checked) after the connection has been established.</li>
+                <li>The <span class="literal">debug</span> option is implemented.</li>
+                <li>The connection is correctly terminated by a <span class="literal">LOGOUT</span> command whenever possible (i.e. when no I/O or protocol errors occurred).</li>
+                <li>The connection is always closed correctly.</li>
+                <li>Added license to the source distribution.</li>
+                </ul>
+            </subsection>
+            <subsection name="Known issuses">
+                <ul>
+                <li>Missing features: server certificate validation, IMAP over SSL.</li>
+                </ul>
+            </subsection>
+        </section>
+        <section name="Version 0.1 (pre-alpha)">
+            <subsection name="Known issues">
+                <ul>
+                <li>The <span class="literal">debug</span> option not yet implemented.</li>
+                <li>The current policy is to never validate server certificates when using TLS; this behaviour is not yet configurable.</li>
+                <li>IMAP over SSL is not supported yet.</li>
+                <li>The IMAP connection is not always shut down properly.</li>
+                </ul>
+            </subsection>
+        </section>
+    </body>
+</document>

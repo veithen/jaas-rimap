@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Apache Synapse">
+<project name="jaas-rimap">
     <skin>
         <groupId>net.sf.jaasrimap</groupId>
         <artifactId>jaas-rimap-site-skin</artifactId>
         <version>1</version>
     </skin>
+    
+    <bannerRight>
+        <src>logo.gif</src>
+    </bannerRight>
 
     <body>
         <menu>
             <item name="About" href="index.html"/>
+            <item name="Documentation" href="documentation.html"/>
+            <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=155685"/>
+            <item name="Releases" href="releases.html"/>
+            <item name="Links" href="links.html"/>
+            <item name="The author" href="author.html"/>
         </menu>
     </body>
 </project>
