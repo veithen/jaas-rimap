@@ -25,6 +25,7 @@
                 <li>The validation policy for the server certificate is now configurable (new option <span class="literal">validatecert</span>).</li>
                 <li>New options for TCP timeouts (<span class="literal">connecttimeout</span> and <span class="literal">timeout</span>).</li>
                 <li>Code improvements.</li>
+                <li>Changed license to Apache License 2.0</li>
                 </ul>
             </subsection>
         </section>

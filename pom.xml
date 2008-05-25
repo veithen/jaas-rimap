@@ -94,4 +94,17 @@
             <url>http://www.ohloh.net/accounts/12757</url>
         </developer>
     </developers>
+    
+    <distributionManagement>
+        <!-- Use "mvn site:deploy" to upload -->
+        <site>
+            <id>jaas-rimap-site</id>
+            <url>scp://shell.sf.net/home/groups/j/ja/jaas-rimap/htdocs/</url>
+        </site>
+        <!-- Use "mvn deploy" to upload -->
+        <snapshotRepository>
+            <id>jaas-rimap-repository</id>
+            <url>scpexe://shell.sf.net/home/groups/j/ja/jaas-rimap/htdocs/repository/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
