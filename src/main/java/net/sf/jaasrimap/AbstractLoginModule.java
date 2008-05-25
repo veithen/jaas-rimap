@@ -24,7 +24,7 @@ public abstract class AbstractLoginModule implements LoginModule {
     protected Subject subject;
     protected CallbackHandler callbackHandler;
     
-    public void initialize(Subject subject, CallbackHandler callbackHandler, Map sharedState, Map options) {
+    public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String,?> sharedState, Map<String,?> options) {
         this.subject = subject;
         this.callbackHandler = callbackHandler;
         debug = getOptionAsBoolean(options, "debug", false);
@@ -36,7 +36,7 @@ public abstract class AbstractLoginModule implements LoginModule {
      *
      * Because of a bug in LoginContext, this method should not be called initialize.
      */
-    protected abstract void init(Map sharedState, Map options);
+    protected abstract void init(Map<String,?> sharedState, Map<String,?> options);
     
     protected void log(String msg) {
         System.out.println(msg);
@@ -46,7 +46,7 @@ public abstract class AbstractLoginModule implements LoginModule {
         ex.printStackTrace(System.out);
     }
     
-    protected String getOptionAsString(Map options, String name, String defaultValue) {
+    protected String getOptionAsString(Map<String,?> options, String name, String defaultValue) {
         String value = (String)options.get(name);
         if (value == null) {
             if (debug) { log(name + " = " + defaultValue + " [default]"); }
@@ -57,7 +57,7 @@ public abstract class AbstractLoginModule implements LoginModule {
         }
     }
     
-    protected int getOptionFromEnum(Map options, String name, String[] values, int defaultValue) {
+    protected int getOptionFromEnum(Map<String,?> options, String name, String[] values, int defaultValue) {
         String value = (String)options.get(name);
         if (value != null) {
             for (int i=0; i<values.length; i++) {
@@ -72,11 +72,11 @@ public abstract class AbstractLoginModule implements LoginModule {
         return defaultValue;
     }
     
-    protected boolean getOptionAsBoolean(Map options, String name, boolean defaultValue) {
+    protected boolean getOptionAsBoolean(Map<String,?> options, String name, boolean defaultValue) {
         return getOptionFromEnum(options, name, new String[] { "false", "true" }, defaultValue ? 1 : 0) == 1;
     }
     
-    protected int getOptionAsInteger(Map options, String name, int defaultValue) {
+    protected int getOptionAsInteger(Map<String,?> options, String name, int defaultValue) {
         String value = (String)options.get(name);
         if (value != null) {
             try {

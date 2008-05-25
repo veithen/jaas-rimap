@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.security.GeneralSecurityException;
+import java.security.Principal;
 import java.util.Map;
 import java.util.Set;
 
@@ -158,11 +159,11 @@ public class RIMAPLoginModule extends AbstractLoginModule {
     
     private final static LoginCache cache = new LoginCache();
     
-    private String host;
+    String host;
     private boolean usessl;
-    private int port;
-    private int connecttimeout;
-    private int timeout;
+    int port;
+    int connecttimeout;
+    int timeout;
     private boolean usetls;
     private boolean validatecert;
     private int cachettl;
@@ -174,7 +175,8 @@ public class RIMAPLoginModule extends AbstractLoginModule {
     
     private final static String[] PROTOCOLS = { "imap", "imaps" };
     
-    protected void init(Map sharedState, Map options) {
+    @Override
+    protected void init(Map<String,?> sharedState, Map<String,?> options) {
         host = getOptionAsString(options, "host", "localhost");
         usessl = getOptionFromEnum(options, "protocol", PROTOCOLS, 0) == 1;
         port = getOptionAsInteger(options, "port", usessl ? 993 : 143);
@@ -335,7 +337,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
 
     public boolean commit() throws LoginException {
         if (loginSucceeded) {
-            Set principals = subject.getPrincipals();
+            Set<Principal> principals = subject.getPrincipals();
             principals.add(hostPrincipal);
             principals.add(userPrincipal);
             clearState();
@@ -362,7 +364,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
 
     public boolean logout() throws LoginException {
         if (!subject.isReadOnly()) {
-            Set principals = subject.getPrincipals();
+            Set<Principal> principals = subject.getPrincipals();
             principals.remove(hostPrincipal);
             principals.remove(userPrincipal);
         }

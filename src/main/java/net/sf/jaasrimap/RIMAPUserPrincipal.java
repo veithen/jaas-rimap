@@ -26,14 +26,17 @@ public final class RIMAPUserPrincipal implements Principal {
         return name;
     }
     
+    @Override
     public int hashCode() {
         return name.hashCode();
     }
 
+    @Override
     public boolean equals(Object obj) {
         return obj instanceof RIMAPUserPrincipal && name.equals(((RIMAPUserPrincipal)obj).name);
     }
 
+    @Override
     public String toString() {
         return name;
     }

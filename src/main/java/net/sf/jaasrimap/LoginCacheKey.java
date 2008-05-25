@@ -39,6 +39,7 @@ public class LoginCacheKey {
         }
     }
 
+    @Override
     public boolean equals(Object _obj) {
         if (_obj instanceof LoginCacheKey) {
             LoginCacheKey obj = (LoginCacheKey)_obj;
@@ -48,6 +49,7 @@ public class LoginCacheKey {
         }
     }
 
+    @Override
     public int hashCode() {
         int result = realm.hashCode();
         result = 37*result + user.hashCode();

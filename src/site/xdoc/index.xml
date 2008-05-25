@@ -40,7 +40,7 @@
             </ul>
         </section>
         <section name="JRE compatibility">
-            <p>Development currently takes place using Java 1.5. Care has been taken to use only APIs already existing in Java 1.4. However jaas-rimap has not yet been tested with this version.</p>
+            <p>From release 0.3 onwards, jaas-rimap requires Java 1.5.</p>
         </section>
         <section name="License">
             <p>jaas-rimap is distributed under the <a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a> (LGPL). Use of this library in proprietary programs is permitted.</p>

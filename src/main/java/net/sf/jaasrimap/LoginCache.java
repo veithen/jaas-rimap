@@ -22,13 +22,13 @@ import java.util.Map;
  * Instances of this class are thread safe.
  */
 public class LoginCache {
-    private final Map cache = new HashMap();
+    private final Map<LoginCacheKey,Long> cache = new HashMap<LoginCacheKey,Long>();
     
     public synchronized boolean check(LoginCacheKey key) {
-        Long expires = (Long)cache.get(key);
+        Long expires = cache.get(key);
         if (expires == null) {
             return false;
-        } else if (expires.longValue() < System.currentTimeMillis()) {
+        } else if (expires < System.currentTimeMillis()) {
             cache.remove(key);
             return false;
         } else {
@@ -37,6 +37,6 @@ public class LoginCache {
     }
     
     public synchronized void add(LoginCacheKey key, int ttl) {
-        cache.put(key, new Long(System.currentTimeMillis() + 1000*ttl));
+        cache.put(key, System.currentTimeMillis() + 1000*ttl);
     }
 }
