@@ -4,11 +4,11 @@
         <title>Documentation</title>
     </properties>
     <body>
-        <div><img src="link.gif" alt="link" style="vertical-align: middle"/> <a href="javadoc/index.html">Javadoc</a></div>
+        <div><img src="link.gif" alt="link" style="vertical-align: middle"/> <a href="apidocs/index.html">Javadoc</a></div>
         <section name="JAAS Configuration">
             <p>The full name of the class implementing the login module is <span class="java">net.sf.jaasrimap.RIMAPLoginModule</span>. A typical <span class="filename">jaas.config</span> file will look like this:</p>
     
-            <div class="codeblock">
+            <div class="source">
             <div class="indent0">Sample {</div>
             <div class="indent1">net.sf.jaasrimap.RIMAPLoginModule required host=imap.local.net usetls=true debug=true;</div>
             <div class="indent0">};</div>

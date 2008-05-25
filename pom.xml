@@ -24,4 +24,52 @@
             <url>http://maven-repo.evolvis.org/releases/</url>
         </repository>
     </repositories>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <links>
+                        <link>http://java.sun.com/j2se/1.4.2/docs/api/</link>
+                    </links>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <url>http://jaas-rimap.sourceforge.net/</url>
+    
+    <inceptionYear>2005</inceptionYear>
+
+    <scm>
+        <connection>scm:svn:http://jaas-rimap.svn.sourceforge.net/svnroot/jaas-rimap/trunk</connection>
+        <developerConnection>scm:svn:https://jaas-rimap.svn.sourceforge.net/svnroot/jaas-rimap/trunk</developerConnection>
+        <url>http://jaas-rimap.svn.sourceforge.net/viewvc/jaas-rimap/trunk/</url>
+    </scm>
+    
+    <developers>
+        <developer>
+            <name>Andreas Veithen</name>
+            <id>veithen</id>
+            <email>andreas DOT veithen AT skynet DOT be</email>
+            <url>http://www.ohloh.net/accounts/12757</url>
+        </developer>
+    </developers>
 </project>
