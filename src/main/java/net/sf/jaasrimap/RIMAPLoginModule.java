@@ -160,11 +160,10 @@ public class RIMAPLoginModule extends AbstractLoginModule {
     private final static LoginCache cache = new LoginCache();
     
     String host;
-    private boolean usessl;
     int port;
+    private Protocol protocol;
     int connecttimeout;
     int timeout;
-    private boolean usetls;
     private boolean validatecert;
     private int cachettl;
     
@@ -178,16 +177,23 @@ public class RIMAPLoginModule extends AbstractLoginModule {
     @Override
     protected void init(Map<String,?> sharedState, Map<String,?> options) {
         host = getOptionAsString(options, "host", "localhost");
-        usessl = getOptionFromEnum(options, "protocol", PROTOCOLS, 0) == 1;
+        boolean usessl = getOptionFromEnum(options, "protocol", PROTOCOLS, 0) == 1;
         port = getOptionAsInteger(options, "port", usessl ? 993 : 143);
         connecttimeout = getOptionAsInteger(options, "connecttimeout", 0);
         timeout = getOptionAsInteger(options, "timeout", 0);
-        usetls = getOptionAsBoolean(options, "usetls", false);
+        boolean usetls = getOptionAsBoolean(options, "usetls", false);
         validatecert = getOptionAsBoolean(options, "validatecert", true);
         cachettl = getOptionAsInteger(options, "cachettl", 0);
         if (usessl && usetls) {
             if (debug) { log("Ignoring option 'usetls'"); }
             usetls = false;
+        }
+        if (usessl) {
+            protocol = Protocol.IMAPS;
+        } else if (usetls) {
+            protocol = Protocol.IMAP_TLS;
+        } else {
+            protocol = Protocol.IMAP;
         }
     }
     
@@ -225,7 +231,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
         if (cachettl == 0) {
             key = null;
         } else {
-            key = new LoginCacheKey(host + ":" + port + ":" + usessl + ":" + usetls, user, password);
+            key = new LoginCacheKey(host + ":" + port + ":" + protocol, user, password);
             if (cache.check(key)) {
                 if (debug) { log("OK from login cache; not connecting to IMAP server"); }
                 return success(user);
@@ -233,7 +239,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
         }
         
         X509TrustManager trustManager;
-        if ((usessl || usetls) && !validatecert) {
+        if (protocol.isSecure() && !validatecert) {
             if (debug) { log("Using promiscuous trust manager"); }
             trustManager = new PromiscuousX509TrustManager();
         } else {
@@ -252,7 +258,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
         // rest of the code in a separate try block.
         try {
             conn.setOptions();
-            if (usessl) {
+            if (protocol == Protocol.IMAPS) {
                 conn.startSSL(trustManager); // TODO: trust manager should be configurable
             }
             conn.processGreeting();
@@ -263,7 +269,7 @@ public class RIMAPLoginModule extends AbstractLoginModule {
                 // connection (unless there is an I/O or protocol error)
                 try {
                     IMAPResponse response;
-                    if (usetls) {
+                    if (protocol == Protocol.IMAP_TLS) {
                         response = conn.sendCommand(IMAPConstants.STARTTLS);
                         if (response.getID() == IMAPConstants.OK) {
                             conn.startSSL(trustManager); // TODO: trust manager should be configurable
